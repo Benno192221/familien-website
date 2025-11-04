@@ -1,133 +1,47 @@
 <!DOCTYPE html>
 <html lang="de">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Die Buhlis - Login</title>
-<style>
-@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
-
-* { box-sizing: border-box; margin: 0; padding: 0; }
-
-body {
-  font-family: 'Roboto', sans-serif;
-  height: 100vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  background: linear-gradient(-45deg, #ff6a00, #ee0979, #6a11cb, #2575fc);
-  background-size: 400% 400%;
-  animation: gradientBG 15s ease infinite;
-}
-
-@keyframes gradientBG {
-  0% { background-position: 0% 50%; }
-  50% { background-position: 100% 50%; }
-  100% { background-position: 0% 50%; }
-}
-
-.login-box {
-  background: rgba(255,255,255,0.95);
-  padding: 40px 50px;
-  border-radius: 15px;
-  box-shadow: 0 15px 30px rgba(0,0,0,0.2);
-  text-align: center;
-  width: 300px;
-  transform: scale(0);
-  animation: popIn 0.6s forwards;
-}
-
-@keyframes popIn { to { transform: scale(1); } }
-
-h2 {
-  margin-bottom: 30px;
-  color: #333;
-  font-weight: 700;
-}
-
-input {
-  width: 100%;
-  padding: 12px 15px;
-  margin: 10px 0;
-  border-radius: 8px;
-  border: 1px solid #ccc;
-  font-size: 16px;
-  transition: 0.3s;
-}
-
-input:focus {
-  border-color: #2575fc;
-  box-shadow: 0 0 8px rgba(37,117,252,0.5);
-  outline: none;
-}
-
-button {
-  width: 100%;
-  padding: 12px;
-  margin-top: 20px;
-  border: none;
-  border-radius: 8px;
-  background: #2575fc;
-  color: white;
-  font-size: 16px;
-  cursor: pointer;
-  transition: 0.3s;
-}
-
-button:hover {
-  background: #6a11cb;
-  transform: translateY(-3px);
-  box-shadow: 0 5px 15px rgba(0,0,0,0.2);
-}
-
-.error {
-  color: red;
-  margin-top: 15px;
-  opacity: 0;
-  animation: fadeIn 0.5s forwards;
-}
-
-@keyframes fadeIn { to { opacity: 1; } }
-
-.bounce { animation: bounceOut 0.6s forwards; }
-@keyframes bounceOut {
-  20% { transform: scale(1.1); }
-  50% { transform: scale(0.9); }
-  100% { transform: scale(0); }
-}
-</style>
+  <meta charset="UTF-8">
+  <title>Login | Die Buhlis</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
 </head>
 <body>
 
+<ul class="navigation">
+  <li class="active">
+    <a href="index.html">
+      <span class="icon"><ion-icon name="home-outline"></ion-icon></span>
+      <span class="text">Home</span>
+    </a>
+  </li>
+  <li>
+    <a href="dashboard.html">
+      <span class="icon"><ion-icon name="person-outline"></ion-icon></span>
+      <span class="text">Dashboard</span>
+    </a>
+  </li>
+</ul>
+
 <div class="login-box" id="loginBox">
-  <h2>Die Buhlis - Login</h2>
-  <input type="text" id="username" placeholder="Benutzername">
-  <input type="password" id="password" placeholder="Passwort">
-  <button onclick="login()">Einloggen</button>
-  <div id="error" class="error"></div>
+    <h2>Die Buhlis - Login</h2>
+    <input type="text" id="username" placeholder="Benutzername">
+    <input type="password" id="password" placeholder="Passwort">
+    <button onclick="login()">Einloggen</button>
+    <div id="error" class="error"></div>
 </div>
 
 <script>
 function login() {
-  const user = document.getElementById('username').value;
-  const pass = document.getElementById('password').value;
-  const error = document.getElementById('error');
-  const box = document.getElementById('loginBox');
+    const user = document.getElementById("username").value;
+    const pass = document.getElementById("password").value;
 
-  if(user === "benno" && pass === "1234") {
-    box.classList.add('bounce');
-    setTimeout(() => {
-      localStorage.setItem("loggedIn", "true");
-      window.location.href = "dashboard.html";
-    }, 600);
-  } else {
-    error.textContent = "Falscher Benutzername oder Passwort!";
-  }
-}
-
-// Automatisch weiterleiten, falls schon eingeloggt
-if(localStorage.getItem("loggedIn") === "true") {
-  window.location.href = "dashboard.html";
+    if (user === "buhli" && pass === "1234") {
+        localStorage.setItem("loggedIn", "true");
+        window.location.href = "dashboard.html";
+    } else {
+        document.getElementById("error").innerText = "Falsche Daten!";
+    }
 }
 </script>
 
